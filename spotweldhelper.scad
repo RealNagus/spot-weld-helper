@@ -57,7 +57,7 @@ Tol = 0.1; // 0.1
 Extrusion_Width = 0.4; // [0.25:0.05:1.0]
 
 // Minimum number of extrusion lines on thin walls
-Min_Wall_Lines = 2; // [1:1:10]
+Min_Wall_Lines = 3; // [1:1:10]
 
 // Large bevel width for the base in mm
 Bevel_Large = 5.0; // 0.1
@@ -77,7 +77,7 @@ min_edge_len = Min_Wall_Lines * Extrusion_Width;
 base_offset_x = Cell_Spacing / 2 + min_edge_len;
 //base_offset_y_old = sqrt(Cell_Spacing^2 - (Cell_Spacing - min_edge_len / 2)^2);
 //echo(base_offset_y_old);
-base_offset_y = sqrt((Cell_Diameter/2 + Tol)^2 - (Cell_Spacing/2 - min_edge_len)^2);
+base_offset_y = sqrt((Cell_Diameter/2 + Tol)^2 - (Cell_Spacing/2 - min_edge_len/2)^2);
 echo(base_offset_y);
 
 
@@ -257,13 +257,13 @@ module magnets_1_cutout()
         // allowing the magnets to be inserted after printing.
         if (Integrate_Magnets)
         {
-            translate([i*Cell_Spacing - Magnet_1_Width/2-Tol, magnet_offset, base_height/2-Magnet_1_Height/2-Tol])
-                cube([Magnet_1_Width+2*Tol, Magnet_1_Depth+2*Tol,Magnet_1_Height+2*Tol]);
+            translate([i*Cell_Spacing - Magnet_1_Width/2-Tol, magnet_offset, base_height/2-Magnet_1_Height/2-2*Tol])
+                cube([Magnet_1_Width+2*Tol, Magnet_1_Depth+2*Tol,Magnet_1_Height+4*Tol]);
         }
         else
         {
-            translate([i*Cell_Spacing - Magnet_1_Width/2-Tol, magnet_offset, -Tol])
-                cube([Magnet_1_Width+2*Tol, Magnet_1_Depth+2*Tol, Magnet_1_Height/2 + base_height/2 + 2*Tol]);
+            translate([i*Cell_Spacing - Magnet_1_Width/2-Tol, magnet_offset, -2*Tol])
+                cube([Magnet_1_Width+2*Tol, Magnet_1_Depth+2*Tol, Magnet_1_Height/2 + base_height/2 + 4*Tol]);
         }
     }
 }
@@ -277,13 +277,13 @@ module magnets_2_cutout()
         // allowing the magnets to be inserted after printing.
         if (Integrate_Magnets)
         {
-            translate([i*Cell_Spacing/2 - Magnet_2_Width/2-Tol, magnet_offset, base_height/2-Magnet_2_Height/2-Tol])
-                cube([Magnet_2_Width+2*Tol, Magnet_2_Depth+2*Tol,Magnet_2_Height+2*Tol]);
+            translate([i*Cell_Spacing/2 - Magnet_2_Width/2-Tol, magnet_offset, base_height/2-Magnet_2_Height/2-2*Tol])
+                cube([Magnet_2_Width+2*Tol, Magnet_2_Depth+2*Tol,Magnet_2_Height+4*Tol]);
         }
         else
         {
-            translate([i*Cell_Spacing/2 - Magnet_2_Width/2-Tol, magnet_offset, -Tol])
-                cube([Magnet_2_Width+2*Tol, Magnet_2_Depth+2*Tol, Magnet_2_Height/2 + base_height/2 + 2*Tol]);
+            translate([i*Cell_Spacing/2 - Magnet_2_Width/2-Tol, magnet_offset, -2*Tol])
+                cube([Magnet_2_Width+2*Tol, Magnet_2_Depth+2*Tol, Magnet_2_Height/2 + base_height/2 + 4*Tol]);
         }
     }
 }
