@@ -3,7 +3,7 @@ This OpenSCAD script generates a simple spot weld helper for battery cells.
 Depending on the desired number of cells and their dimensions it creates
 two matching holder objects.
 
-![Example holder preview](immages/preview.png "Example holder")
+![Example holder preview](./images/preview.png "Example holder")
 
 One base object has cut-outs for the number of cells whereas the second 
 object (slider) has two cut-outs on both sides. The second row is designed
