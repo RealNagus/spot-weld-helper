@@ -100,8 +100,7 @@ Bevel_Small = 1.0; // 0.1
 
 // ************ INTERNAL VARIABLES ************
 module __Customizer_Limit__ () {}
-$fa=1;
-$fs=0.1;
+$fn=96;
 
 
 // calculated variables
@@ -198,12 +197,14 @@ module base_holder()
             polygon([
                 [0, 0],
                 [full_base_width, 0],
-                [full_base_width, 2*Axis_Diameter],
+                [full_base_width, 2*Axis_Diameter - Bevel_Small],
+                [full_base_width - Bevel_Small, 2*Axis_Diameter],
                 [base_width+base_diff/2, 2*Axis_Diameter],
-                [base_width+base_diff/2-Bevel_Large, 2*Axis_Diameter-Bevel_Large],
-                [base_diff/2+Bevel_Large, 2*Axis_Diameter-Bevel_Large],
+                [base_width+base_diff/2 - Bevel_Large, 2*Axis_Diameter - Bevel_Large],
+                [base_diff/2 + Bevel_Large, 2*Axis_Diameter - Bevel_Large],
                 [base_diff/2, 2*Axis_Diameter],
-                [0, 2*Axis_Diameter]
+                [Bevel_Small, 2*Axis_Diameter],
+                [0, 2*Axis_Diameter - Bevel_Small]
             ]);
         }
 
@@ -224,6 +225,7 @@ module base_slider()
     translate([0, base_offset_y, 0])
     difference()
     {
+        // the vertical base object and foot
         translate([-base_offset_x, 0, 0])
         union()
         {
@@ -237,10 +239,20 @@ module base_slider()
                 [0, slider_depth - Bevel_Large]
             ]);    
 
-            translate([-base_diff/2, 0, 0])
-            cube([full_base_width, slider_depth-Bevel_Large, 2*Axis_Diameter]);
+            translate([-base_diff/2, slider_depth-Bevel_Large, 0])
+            rotate([90, 0, 0])
+            linear_extrude(height=slider_depth-Bevel_Large)
+            polygon([
+                [0, 0],
+                [full_base_width, 0],
+                [full_base_width, 2*Axis_Diameter - Bevel_Small],
+                [full_base_width - Bevel_Small, 2*Axis_Diameter],
+                [Bevel_Small, 2*Axis_Diameter],
+                [0, 2*Axis_Diameter - Bevel_Small]
+            ]);
         }
 
+        // the cell cutouts
         union()
         {
             translate([0, -base_offset_y, 0])

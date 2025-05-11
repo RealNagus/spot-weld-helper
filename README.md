@@ -69,8 +69,9 @@ four groups of settings that can be adjusted.
   This sets the mimimum wall thickness in multiples of extrustion width
   for thin walls, e.g. between the magnet and battery cell and the "tip"
   between the cell cutouts.
-- **Bevel large** \
-  Both objects are beveled at certain edges. This is the bevel size in
-  millimeters.
-
-
+- **Bevel Large** \
+  Both objects are beveled at certain edges. This is the larger bevel 
+  size in millimeters.
+- **Bevel Small** \
+  Both objects are beveled at certain edges. This is the small bevel 
+  size in millimeters.
